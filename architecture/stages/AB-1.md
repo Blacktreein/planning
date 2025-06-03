@@ -2,6 +2,9 @@
 
 This version is AB-1 (API builder 1). Features include
 
+>[!NOTE]
+> For description of tasks, please refer to the [Structure](./AB-1.Structure.md) document. 
+
 | Task                                               | Status  | Names |
 | -------------------------------------------------- | ------- | ----- |
 | Signup and Signin                                  | ✅ Done | auth  |
@@ -34,13 +37,32 @@ This version is AB-1 (API builder 1). Features include
 
 - Users can select a repository, branch and dockerfile path from their connected github account
 
-| Task                                                                                    | Status     | Tags       |
-| --------------------------------------------------------------------------------------- | ---------- | ---------- |
-| Create a route to get the list of repositories for the user                             | ✅ Done    | 🐍Backend  |
-| Create a route to get the list of branches for the selected repository                  | ✅ Done    | 🐍Backend  |
-| Create Frontend component to select repository, branch and dockerfile path              | ✅ Done    | 🎨Frontend |
-| Create a deployment entity to store the selected repository, branch and dockerfile path | `📌 Major` | 🐍Backend  |
-| Service layer for deployment module and store the data in the database                  | `📌 Major` | 🐍Backend  |
+| Task                                                                                    | Status  | Tags       |
+| --------------------------------------------------------------------------------------- | ------- | ---------- |
+| Create a route to get the list of repositories for the user                             | ✅ Done | 🐍Backend  |
+| Create a route to get the list of branches for the selected repository                  | ✅ Done | 🐍Backend  |
+| Create Frontend component to select repository, branch and dockerfile path              | ✅ Done | 🎨Frontend |
+| Create a deployment entity to store the selected repository, branch and dockerfile path | ✅ Done | 🐍Backend  |
+| Service layer for deployment module and store the data in the database                  | ✅ Done | 🐍Backend  |
+| Controller layer for deployment module to handle the request and response               | ✅ Done | 🐍Backend  |
+| entity for endpoints which will be of the backend hosted                                | ✅ Done | 🐍Backend  |
+| service layer for endpoints to handle the logic                                         | ✅ Done | 🐍Backend  |
+| controller for the endpoints to handle endpoints                                        | ✅ Done | 🐍Backend  |
+
+## Create message and connect to queue
+
+- A messsage is created and connected to the queue for the deployment
+  | Task | Status | Tags |
+  | ------------------------------------------------- | ------- | ----- |
+  | Create a route to trigger a message for the deployment | `📌 Major` | 🐍Backend |
+  | RabbitMQ setup and configuration from docker compose | ✅ Done | 🐍Backend |
+  | A queue named 'deployments' is created in RabbitMQ | ✅ Done | Message Queue |
+  | Create a messaging queue module (Tasks)[./AB-1.Structure.md#messaging-queue-module] | ❌ | 🐍Backend |
+  | Create a message DTO | ❌ | 🐍Backend  |
+  | Setup rabbitmq publisher logic | ❌ | 🐍Backend  
+  | Test/health check endpoints for the messaging queue module | ❌ | 🐍Backend  |
+  | Integrate messaging queue into deployment module (trigger endpoint) | ❌ | 🐍Backend   |
+
 
 ## Select environment variables (Later)
 
@@ -50,10 +72,3 @@ This version is AB-1 (API builder 1). Features include
 
 - Users can select the build and deploy options like build command, deploy command, etc.
 
-## Create message and connect to queue
-
-- A messsage is created and connected to the queue for the deployment
-  | Task | Status | Tags |
-  | ------------------------------------------------- | ------- | ----- |
-  | Create a route to create a message for the deployment | `📌 Major` | 🐍Backend |
-  |
