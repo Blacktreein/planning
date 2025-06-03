@@ -20,5 +20,13 @@
 
 
 ### Messaging-Queue Module
+- Deployment trigger for creating and publishing messages to the queue.
 - Messaging Service layer
-    - 
+    - Create the exchange and queue in RabbitMQ.
+    - Create a publishdeploymentdto to publish the deployment message.
+    - OnModuleInit to create the exchange and queue.
+    - OnModuleDestroy to delete the exchange and queue.
+    - Publish method to publish the deployment message.
+- Create a persistent volume for rabbitmq and docker compose setup.
+
+

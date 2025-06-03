@@ -2,17 +2,17 @@
 
 This version is AB-1 (API builder 1). Features include
 
->[!NOTE]
-> For description of tasks, please refer to the [Structure](./AB-1.Structure.md) document. 
+> [!NOTE]
+> For description of tasks, please refer to the [Structure](./AB-1.Structure.md) document.
 
 | Task                                               | Status  | Names |
 | -------------------------------------------------- | ------- | ----- |
 | Signup and Signin                                  | ✅ Done | auth  |
 | Connect to github                                  | ✅ Done | repo1 |
-| Select repository, branch and dockerfile path      | ❌      | repo2 |
+| Select repository, branch and dockerfile path      | ✅ Done | repo2 |
 | Select environment variables                       | ❌      | conf1 |
 | Select build and deploy options                    | ❌      | conf2 |
-| Create message and connect to queue                | ❌      | msg1  |
+| Create message and connect to queue                | ✅ Done   | msg1  |
 | Implement messaging queue                          | ❌      | msg2  |
 | Create go worker with docker sdk to deploy locally | ❌      | wrk1  |
 
@@ -52,17 +52,18 @@ This version is AB-1 (API builder 1). Features include
 ## Create message and connect to queue
 
 - A messsage is created and connected to the queue for the deployment
-  | Task | Status | Tags |
-  | ------------------------------------------------- | ------- | ----- |
-  | Create a route to trigger a message for the deployment | `📌 Major` | 🐍Backend |
-  | RabbitMQ setup and configuration from docker compose | ✅ Done | 🐍Backend |
-  | A queue named 'deployments' is created in RabbitMQ | ✅ Done | Message Queue |
-  | Create a messaging queue module (Tasks)[./AB-1.Structure.md#messaging-queue-module] | ❌ | 🐍Backend |
-  | Create a message DTO | ❌ | 🐍Backend  |
-  | Setup rabbitmq publisher logic | ❌ | 🐍Backend  
-  | Test/health check endpoints for the messaging queue module | ❌ | 🐍Backend  |
-  | Integrate messaging queue into deployment module (trigger endpoint) | ❌ | 🐍Backend   |
+-
 
+| Task                                                                                | Status  | Tags          |
+| ----------------------------------------------------------------------------------- | ------- | ------------- |
+| Create a route to trigger a message for the deployment                              | ✅ Done | 🐍Backend     |
+| RabbitMQ setup and configuration from docker compose                                | ✅ Done | 🐍Backend     |
+| A queue named 'deployments' is created in RabbitMQ                                  | ✅ Done | Message Queue |
+| Create a messaging queue module (Tasks)[./AB-1.Structure.md#messaging-queue-module] | ✅ Done | 🐍Backend     |
+| Create a message DTO                                                                | ✅ Done | 🐍Backend     |
+| Setup rabbitmq publisher logic                                                      | ✅ Done | 🐍Backend     |
+| Test/health check endpoints for the messaging queue module                          | ❌      | 🐍Backend     |
+| Integrate messaging queue into deployment module (trigger endpoint)                 | ✅ Done | 🐍Backend     |
 
 ## Select environment variables (Later)
 
@@ -71,4 +72,3 @@ This version is AB-1 (API builder 1). Features include
 ## Select build and deploy options (Later)
 
 - Users can select the build and deploy options like build command, deploy command, etc.
-
