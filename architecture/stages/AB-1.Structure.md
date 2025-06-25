@@ -1,5 +1,5 @@
 
-
+---
 ## Backend Architecture (Control plane)
 ### Users Module
 - Users can signup and signin using Clerk and OAuth.
@@ -30,3 +30,28 @@
 - Create a persistent volume for rabbitmq and docker compose setup.
 
 
+---
+
+## MQ Architecture (Rabbitmq)
+- Implemented direct queue
+- exchangeName : "blacktree.direct"
+
+| Direction        | Exchange           | Routing Key      | Queue           | Producer | Consumer |
+| ---------------- | ------------------ | ---------------- | --------------- | -------- | -------- |
+| backend → worker | `blacktree.direct` | `worker.execute` | `execute.queue` | API      | Worker   |
+| worker → backend | `blacktree.direct` | `api.result`     | `status.queue`  | Worker   | API      |
+
+
+![alt text](image.png)
+
+---
+## Worker (Go)
+- Can clone the github repo based on the deployment request
+- Can build the image based on the docker
+- Can host the image on docker engine and can stop it or restart it.
+- Publish the status of the updates when changes are done on messaging queue
+- Can consume and publish from the messaging queue
+
+
+The different packages of the workers
+- git: clone.go, 

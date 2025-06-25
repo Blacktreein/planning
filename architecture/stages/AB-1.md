@@ -12,7 +12,7 @@ This version is AB-1 (API builder 1). Features include
 | Select repository, branch and dockerfile path      | ✅ Done | repo2 |
 | Select environment variables                       | ❌      | conf1 |
 | Select build and deploy options                    | ❌      | conf2 |
-| Create message and connect to queue                | ✅ Done   | msg1  |
+| Create message and connect backend to queue                | ✅ Done   | msg1  |
 | Implement messaging queue                          | ❌      | msg2  |
 | Create go worker with docker sdk to deploy locally | ❌      | wrk1  |
 
@@ -49,10 +49,10 @@ This version is AB-1 (API builder 1). Features include
 | service layer for endpoints to handle the logic                                         | ✅ Done | 🐍Backend  |
 | controller for the endpoints to handle endpoints                                        | ✅ Done | 🐍Backend  |
 
-## Create message and connect to queue
+## Create message and connect backend to queue
 
-- A messsage is created and connected to the queue for the deployment
--
+- A messaging queue is created and is connected to the main backend for deployemnt
+- 
 
 | Task                                                                                | Status  | Tags          |
 | ----------------------------------------------------------------------------------- | ------- | ------------- |
@@ -62,13 +62,14 @@ This version is AB-1 (API builder 1). Features include
 | Create a messaging queue module (Tasks)[./AB-1.Structure.md#messaging-queue-module] | ✅ Done | 🐍Backend     |
 | Create a message DTO                                                                | ✅ Done | 🐍Backend     |
 | Setup rabbitmq publisher logic                                                      | ✅ Done | 🐍Backend     |
-| Test/health check endpoints for the messaging queue module                          | ❌      | 🐍Backend     |
+| Test/health check endpoints for the messaging queue module                          | ✅ Done      | 🐍Backend     |
 | Integrate messaging queue into deployment module (trigger endpoint)                 | ✅ Done | 🐍Backend     |
 
-## Select environment variables (Later)
+## Implement messaging queue (msg2)
+- 
 
+## Select environment variables (Later)
 - Users can upload the environment variables
 
 ## Select build and deploy options (Later)
-
 - Users can select the build and deploy options like build command, deploy command, etc.
