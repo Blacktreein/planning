@@ -54,4 +54,7 @@
 
 
 The different packages of the workers
-- git: clone.go, 
+- repo: clone.go
+    Responsible for cloning the repository from GitHub after consuming the message from the queue.
+- docker: docker.go
+    Responsible for building the Docker image and hosting it on the Docker engine.

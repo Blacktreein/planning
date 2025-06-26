@@ -73,3 +73,18 @@ This version is AB-1 (API builder 1). Features include
 
 ## Select build and deploy options (Later)
 - Users can select the build and deploy options like build command, deploy command, etc.
+
+
+## Create go worker with docker sdk to deploy locally (wrk1)
+- A worker is created to handle the deployment requests and manage the Docker engine [[AB-1.Structure.md#worker-go]].
+
+
+| Task                                                                                      | Status  | Tags      |
+| ----------------------------------------------------------------------------------------- | ------- | --------- |
+| Clone the GitHub repository based on the deployment request                               | ❌      | worker    |
+| Build the Docker image based on the Dockerfile                                            | ❌      | worker    |
+| Host the image on Docker engine, and support stop/restart operations                      | ❌      | worker    |
+| Publish status updates to the messaging queue with different routing keys                 | ❌      | worker    |
+| Modify the message from messaging queue to include the user token        | ✅ Done   | 🐍Backend |
+
+
