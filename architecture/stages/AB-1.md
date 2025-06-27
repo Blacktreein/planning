@@ -13,7 +13,7 @@ This version is AB-1 (API builder 1). Features include
 | Select environment variables                       | ❌      | conf1 |
 | Select build and deploy options                    | ❌      | conf2 |
 | Create message and connect backend to queue                | ✅ Done   | msg1  |
-| Implement messaging queue                          | ❌      | msg2  |
+| Implement messaging queue                          | ✅ Done      | msg2  |
 | Create go worker with docker sdk to deploy locally | ❌      | wrk1  |
 
 ## Signup and Signin
