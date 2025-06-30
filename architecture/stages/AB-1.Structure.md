@@ -46,15 +46,55 @@
 
 ---
 ## Worker (Go)
-- Can clone the github repo based on the deployment request
-- Can build the image based on the docker
-- Can host the image on docker engine and can stop it or restart it.
-- Publish the status of the updates when changes are done on messaging queue
-- Can consume and publish from the messaging queue
+## Worker Architecture
+### Queue Handling (queue)
+- Consume messages from the RabbitMQ queue.
+- Acknowledge message only after full process (clone → build → status).
+-  Separate routing keys for:
+        api.clone.register
+        api.deploy.request
+- Publish status updates back to the backend 
 
 
-The different packages of the workers
-- repo: clone.go
-    Responsible for cloning the repository from GitHub after consuming the message from the queue.
-- docker: docker.go
-    Responsible for building the Docker image and hosting it on the Docker engine.
+### repository (repo)
+- Clone the repository from GitHub.
+- Authenticate if token is provided (private repos).
+- Create timestamped folder: `tmp/repos/<repo-name>-<timestamp>`
+- Clone repo into that directory.
+- Track clone info in tracker file (repos.json):
+    status: cloned
+- If failed: skip build and send failed status.
+
+
+### builder (builder)
+- Build the Docker image using the Dockerfile.
+- Use the timestamped folder from the clone step.
+- Build the image with a unique tag: `blacktree/<repo-name>:<timestamp>
+- if build completes remove folder whose entry is in `repos.json` and for successful build update the status in the sqlite db to `built` and compose file after sanitasition
+- if docker compose file exists, run the docker compose file and send the status as running to backend.
+
+
+### runner (runner)
+- run the docker containers using the built image.
+- use assigned port from `port pool`.
+- If the container is running, send the status as running to backend.
+- If the container fails to run, send the status as failed to backend. 
+- If the docker compose file fails to run, send the status as failed to backend and.
+
+### tracker (tracker)
+- SaveEntry(): Log clone info (repo, path, status).
+- MarkAsBuilt(): Update status once image is built.
+- DeleteEntry(): Delete folder if status is built or failed after N mins.
+
+
+
+| Package    | Responsibility                    |
+| ---------- | --------------------------------- |
+| `queue/`   | MQ consumer/publisher             |
+| `repo/`    | Cloning logic                     |
+| `builder/` | Docker image build                |
+| `runner/`  | Run container or compose          |
+| `tracker/` | File-based tracker for cleanup    |
+| `ports/`   | Port pool logic                   |
+| `store/`   | SQLite DB for persistent mappings |
+| `utils/`   | Time, string helpers, logger      |
