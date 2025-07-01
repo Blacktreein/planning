@@ -83,7 +83,7 @@
 
 ### tracker (tracker)
 - SaveEntry(): Log clone info (repo, path, status).
-- MarkAsBuilt(): Update status once image is built.
+- GetEntry(): Get the entry in sequence by repo name.
 - DeleteEntry(): Delete folder if status is built or failed after N mins.
 
 

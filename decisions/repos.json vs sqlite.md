@@ -1,0 +1,8 @@
+| Reason                   | Explanation                                                                                                                                                                 |
+| ------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Simplicity**           | A JSON file is dead simple. You don’t need to deal with migrations, schema, drivers, or even a query language. Just `read -> append -> write`. Perfect for quick iteration. |
+| **Startup Cost = 0**     | No need to spin up a DB instance, configure access, or install libraries — file just works out of the box.                                                                  |
+| **Low Volume Use Case**  | You're tracking a small number of cloned repos (maybe 5–50 at a time), not thousands. File I/O is fast and totally fine for this scale.                                     |
+| **Temporary Data**       | This tracker file only exists to **track folders to delete later**. It’s ephemeral. Doesn’t need relational queries or joins.                                               |
+| **Go Routines Friendly** | With a simple `sync.Mutex`, you can protect file access. No need to set up locking or concurrency-safe drivers as with SQLite.                                              |
+| **Easier Debugging**     | You can just open the file and see exactly what’s stored. No queries or tooling needed to inspect current state.                                                            |
