@@ -164,9 +164,9 @@ This version is AB-1 (API builder 1). Features include
 
 | Task                                                                                          | Status | Tags   |
 | --------------------------------------------------------------------------------------------- | ------ | ------ |
-| Consume messages from RabbitMQ queue for deployment requests                                   | ❌      | worker |
-| Clone the GitHub repository based on the deployment request                                   | ❌      | worker |
-| Track cloned repository with timestamp and metadata                                           | ❌      | worker |
+| Consume messages from RabbitMQ queue for deployment requests                                   | ✅ Done     | worker |
+| Clone the GitHub repository based on the deployment request                                   | ✅ Done      | worker |
+| Track cloned repository with timestamp and metadata                                           | ✅ Done      | worker |
 | Build Docker image from the specified Dockerfile path                                         | ❌      | worker |
 | Store build status (success/failure) and update tracker accordingly                           | ❌      | worker |
 | Handle optional Docker Compose file usage                            | ❌      | worker |
